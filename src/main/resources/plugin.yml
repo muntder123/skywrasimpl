@@ -1,0 +1,45 @@
+name: SkyWarsCleanArchitecture
+version: '${project.version}'
+main: com.skywars.SkyWarsPlugin
+api-version: 1.20
+authors: [SkyWars Team]
+description: Professional SkyWars plugin with Clean Architecture, Redis, and MySQL
+website: https://github.com/skywars/clean-architecture
+
+commands:
+  skywars:
+    description: Main SkyWars command
+    usage: /<command> [subcommand]
+    permission: skywars.use
+    aliases: [sw]
+  skywarsstats:
+    description: View player statistics
+    usage: /<command> [player]
+    permission: skywars.stats
+    aliases: [swstats, stats]
+  cosmetic:
+    description: Manage your SkyWars cosmetics
+    usage: /<command> [list|select|preview|buy|clear] [type] [id]
+    permission: skywars.cosmetic
+    aliases: [cosmetics]
+
+permissions:
+  skywars.*:
+    description: All SkyWars permissions
+    children:
+      skywars.use: true
+      skywars.stats: true
+      skywars.admin: true
+      skywars.cosmetic: true
+  skywars.use:
+    description: Basic SkyWars usage
+    default: true
+  skywars.stats:
+    description: View statistics
+    default: true
+  skywars.admin:
+    description: Administrative commands
+    default: op
+  skywars.cosmetic:
+    description: Access to cosmetics
+    default: true
